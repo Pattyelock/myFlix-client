@@ -1,23 +1,19 @@
-import { createRoot } from 'react-dom/client';
 import React from 'react';
-import MovieList from './components/MovieList'; // Import the MovieList component
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './index.scss'; // Make sure the styles are applied correctly
+import MainView from './components/main-view/main-view'; // Import MainView as a default export
+import MovieView from './components/movie-view/movie-view'; // Import MovieView as a default export
 
-// Import the styles
-import './index.scss';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Main component (will eventually use all the others)
-const MyFlixApplication = () => {
-  return (
-    <div className="my-flix">
-      <h1>My Flix App</h1>
-      <MovieList /> {/* Include the MovieList component */}
-    </div>
-  );
-};
-
-// Finds the root of your app
-const container = document.querySelector("#root");
-const root = createRoot(container);
-
-// Tells React to render your app in the root DOM element
-root.render(<MyFlixApplication />);
+root.render(
+  <React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainView />} /> {/* This is the main page */}
+        <Route path="/movie/:id" element={<MovieView />} /> {/* MovieView route */}
+      </Routes>
+    </Router>
+  </React.StrictMode>
+);
