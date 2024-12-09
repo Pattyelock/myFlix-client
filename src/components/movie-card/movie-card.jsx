@@ -1,5 +1,5 @@
 import React from 'react';
-import './movie-card.scss'; // Optional: Add styles later if needed.
+import './movie-card.scss';
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (

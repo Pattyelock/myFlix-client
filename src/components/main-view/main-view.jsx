@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './main-view.scss';
 
 const MainView = () => {
   const movies = [
@@ -9,7 +10,7 @@ const MainView = () => {
   ];
 
   return (
-    <div>
+    <div className="main-view">
       <h1>My Movie List</h1>
       <div className="movie-list">
         {movies.map((movie) => (
@@ -22,4 +23,4 @@ const MainView = () => {
   );
 };
 
-export default MainView; // Default export
+export default MainView;
