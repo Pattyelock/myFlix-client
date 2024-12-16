@@ -1,26 +1,39 @@
-.main-view {
-  
-  @import "../../styles/variables";
+// main-view.scss
+@use '../../styles/variables' as vars;
 
-        .main-view {
-          color: $primary-color;
-        }.movie-card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    width: 150px;
-    text-align: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 
-    a {
-      text-decoration: none;
-      color: $primary-color;
-      font-weight: bold;
+.movie-card {
+  width: 200px;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 
-      &:hover {
-        text-decoration: underline;
-      }
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }
