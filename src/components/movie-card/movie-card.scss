@@ -1,11 +1,9 @@
-
-@import "../../styles/variables";
+// movie-card.scss
+@use '../../styles/variables' as vars;
 
 .movie-card {
-  border: 1px solid $secondary-color;
-  background-color: $primary-color;
-}
-.movie-card {
+  border: 1px solid vars.$secondary-color;
+  background-color: vars.$primary-color;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 
@@ -13,4 +11,3 @@
     transform: scale(1.05);
   }
 }
-

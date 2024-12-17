@@ -1,10 +1,13 @@
-import React from 'react';
-import './movie-card.scss';
+// components/main-view/main-view.js
+import React from "react";
+import "../main-view/main-view.scss";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+const MovieCard = ({ movie }) => {
   return (
-    <div className="movie-card" onClick={() => onMovieClick(movie)}>
-      <h2>{movie.title}</h2>
-    </div>
+    <>
+      <div>{movie?.Title}</div>
+    </>
   );
 };
+
+export default MovieCard;
