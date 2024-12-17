@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<div>Home Page</div>} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="*" element={<div>404 Not Found</div>} />
+        {/* <Route path="*" element={<div>404 Not Found</div>} /> */}
       </Routes>
     </Router>
   );
