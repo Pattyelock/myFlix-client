@@ -37,3 +37,27 @@
   font-weight: bold;
   text-align: center;
 }
+.movie-view {
+  text-align: center;
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  .movie-poster {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+
+  .go-back-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .go-back-link:hover {
+    text-decoration: underline;
+  }
+}
