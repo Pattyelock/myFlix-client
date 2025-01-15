@@ -1,3 +1,4 @@
+import './signup-view.scss'; // Import the SCSS file for the styles
 import React, { useState } from 'react';
 
 export const SignupView = ({ onSignedUp }) => {
