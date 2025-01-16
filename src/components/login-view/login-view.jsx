@@ -1,5 +1,7 @@
 import './login-view.scss';
 import React, { useState } from 'react';
+import { Form, Button, Container, Alert } from 'react-bootstrap';
+
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -7,7 +9,8 @@ export const LoginView = ({ onLoggedIn }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Make API call to log in
+
+    // API call to log in
     fetch('https://your-api.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -29,25 +32,36 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">Login</button>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </form>
+    <Container className="login-view mt-5">
+      <h2 className="text-center mb-4">Login</h2>
+      <Form onSubmit={handleSubmit}>
+        {errorMessage && (
+          <Alert variant="danger" className="text-center">
+            {errorMessage}
+          </Alert>
+        )}
+        <Form.Group controlId="formUsername" className="mb-3">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="formPassword" className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit" className="w-100">
+          Login
+        </Button>
+      </Form>
+    </Container>
   );
 };

@@ -1,4 +1,5 @@
 // components/main-view/main-view.js
+import './movie-card.scss';  // For MovieCard
 import React from "react";
 import "../main-view/main-view.scss";
 

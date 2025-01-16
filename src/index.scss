@@ -1,25 +1,64 @@
-// Define a primary color variable
-$primary-color: steelblue;
-
+/* General Styles for Index */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa; /* Light background for the app */
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.my-flix {
-  color: $primary-color;
+.container {
+  max-width: 1000px;
   padding: 20px;
 }
 
-h1 {
+h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.75rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.text-center {
   text-align: center;
 }
 
-.movie-list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+button {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.alert {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* Consistent styling for buttons across all components */
+button {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
