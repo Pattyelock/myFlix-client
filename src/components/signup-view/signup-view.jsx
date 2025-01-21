@@ -13,7 +13,7 @@ export const SignupView = ({ onSignedUp }) => {
     event.preventDefault();
 
     // API call to sign up
-    fetch('https://your-api.com/users', {
+    fetch('https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

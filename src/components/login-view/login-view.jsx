@@ -11,7 +11,7 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     // API call to log in
-    fetch('https://your-api.com/login', {
+    fetch('https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Username: username, Password: password }),
