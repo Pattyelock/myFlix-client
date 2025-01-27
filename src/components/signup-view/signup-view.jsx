@@ -1,3 +1,4 @@
+import './signup-view.scss'; // Import the SCSS file for the styles
 import React, { useState } from 'react';
 
 export const SignupView = ({ onSignedUp }) => {
@@ -10,7 +11,7 @@ export const SignupView = ({ onSignedUp }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Make API call to sign up
-    fetch('https://your-api.com/users', {
+    fetch('https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -1,5 +1,5 @@
+import './login-view.scss';
 import React, { useState } from 'react';
-
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -8,7 +8,13 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Make API call to log in
-    fetch('https://your-api.com/login', {
+
+
+    const data = {
+      access: username,
+      secret: password
+    };
+    fetch('https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Username: username, Password: password }),
@@ -36,6 +42,7 @@ export const LoginView = ({ onLoggedIn }) => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -44,10 +51,10 @@ export const LoginView = ({ onLoggedIn }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </label>
-      <button type="submit">Login</button>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <button type="submit">Submit</button>
     </form>
   );
 };
