@@ -1,6 +1,6 @@
-import './login-view.scss';
 import React, { useState } from 'react';
-import { Form, Button, Container, Alert } from 'react-bootstrap';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -10,58 +10,63 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // API call to log in
-    fetch('https://your-api.com/login', {
+    const data = {
+      Username: username,
+      Password: password,
+    };
+
+    fetch("https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com//login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Username: username, Password: password }),
+      body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
-          onLoggedIn(data.user);
-        } else {
-          setErrorMessage('Invalid username or password');
-        }
-      })
-      .catch(() => {
-        setErrorMessage('An error occurred. Please try again.');
-      });
+    .then(response => {
+      if (!response.ok) {
+        setErrorMessage('Invalid username or password');
+        throw new Error('Login failed');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onLoggedIn(data.user, data.token);
+      }
+    })
+    .catch((e) => {
+      console.error('Error during login:', e);
+    });
   };
 
   return (
-    <Container className="login-view mt-5">
-      <h2 className="text-center mb-4">Login</h2>
-      <Form onSubmit={handleSubmit}>
-        {errorMessage && (
-          <Alert variant="danger" className="text-center">
-            {errorMessage}
-          </Alert>
-        )}
-        <Form.Group controlId="formUsername" className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formPassword" className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" className="w-100">
-          Login
-        </Button>
-      </Form>
-    </Container>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3" 
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </Form.Group>
+
+      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };

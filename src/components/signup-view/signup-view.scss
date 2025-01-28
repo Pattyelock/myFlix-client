@@ -1,68 +1,60 @@
-/* General Styles for SignupView */
-.signup-view {
-  max-width: 450px;
-  margin: 80px auto; /* Centers the form vertically and horizontally */
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+// Customizing Bootstrap Variables
+$primary: #8B0000; // Custom primary color
+$secondary: #2C2C2C; // Custom secondary color
+$body-bg: #1C1C1C; // Background color
+$text-light: #F5F5F5; // Light text color
+$btn-border-radius: 8px; // Rounded corners for buttons
+
+// Import Bootstrap SCSS
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Custom Styles for SignupView
+body {
+  background-color: $body-bg;
+  color: $text-light;
+  font-family: Arial, sans-serif;
 }
 
-h2 {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.75rem;
-  color: #333;
-  margin-bottom: 20px;
-}
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  background-color: $secondary;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-.text-center {
-  text-align: center;
-}
+  .form-label {
+    color: $text-light;
+    font-weight: bold;
+  }
 
-.alert {
-  margin-bottom: 20px;
-  font-size: 1rem;
-}
+  .form-control {
+    background-color: $body-bg;
+    color: $text-light;
+    border: 1px solid $primary;
 
-button {
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: 5px;
-}
+    &:focus {
+      border-color: $primary;
+      box-shadow: 0 0 5px $primary;
+    }
+  }
 
-.form-label {
-  font-size: 1rem;
-  color: #555;
-}
+  .text-danger {
+    color: $primary;
+    font-weight: bold;
+  }
 
-input {
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
+  button {
+    background-color: $primary;
+    border: none;
+    color: $text-light;
+    padding: 0.5rem 1rem;
+    border-radius: $btn-border-radius;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(38, 143, 255, 0.5);
-}
-
-.w-100 {
-  width: 100%;
-}
-
-button {
-  background-color: #28a745;
-  border-color: #28a745;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-
-button:focus {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
 }
