@@ -1,25 +1,41 @@
-// Define a primary color variable
-$primary-color: steelblue;
+// Define your custom variables
+$primary: #8B0000; // Custom primary color
+$secondary: #2C2C2C; // Custom secondary color
+$body-bg: #1C1C1C; // Background color
+$text-light: #FFFFFF; // Bright text color for better visibility
+$button-bg-hover: #A52A2A; // Hover state for buttons
+$text-muted: #CCCCCC; // Brighter muted text color for better readability
 
+// Import Bootstrap SCSS but make sure it is imported after your custom styles to avoid overriding
+@import '~bootstrap/scss/bootstrap.scss';
+
+// Global styles
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
+  background-color: $body-bg;
+  color: $text-light;
+  font-family: 'Arial', sans-serif;
 }
 
-.my-flix {
-  color: $primary-color;
-  padding: 20px;
+// Form input customization
+.form-control {
+  background-color: $secondary;
+  color: $text-light; // Ensure text inside the input field is visible
+  border: 1px solid $primary;
+
+  &:focus {
+    background-color: $secondary;
+    color: $text-light; // Retain visibility for focused inputs
+    border-color: $primary;
+    box-shadow: 0 0 0 0.25rem rgba($primary, 0.5);
+  }
+
+  &::placeholder {
+    color: $text-muted; // Make placeholder text visible
+    opacity: 1; // Fully visible
+  }
 }
 
-h1 {
-  text-align: center;
-}
-
-.movie-list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+// Additional global styles
+.text-muted {
+  color: $text-muted;
 }
