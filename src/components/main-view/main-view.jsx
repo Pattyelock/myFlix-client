@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { LoginView } from '../login-view/login-view';  // Named import
-import MovieCard from '../movie-card/movie-card';
-import MovieView from '../movie-view/movie-view';
-import { SignupView } from '../signup-view/signup-view'; // Named import
-
+import React, { useEffect, useState } from "react";
+import { LoginView } from "../login-view/login-view"; // Named import
+import MovieCard from "../movie-card/movie-card";
+import MovieView from "../movie-view/movie-view";
+import { SignupView } from "../signup-view/signup-view"; // Named import
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -15,7 +16,7 @@ const MainView = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!storedToken);
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
   // Fetch movies if token is available
@@ -23,7 +24,7 @@ const MainView = () => {
     if (!token) return;
 
     fetch("https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -48,18 +49,19 @@ const MainView = () => {
   if (!user) {
     return (
       <div className="auth-container">
-        <LoginView onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-          localStorage.setItem('user', JSON.stringify(user));
-          localStorage.setItem('token', token);
-        }} />
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", token);
+          }}
+        />
         <span className="separator">or</span>
         <SignupView />
       </div>
     );
   }
-  
 
   // If a movie is selected, show MovieView
   if (selectedMovie) {
@@ -94,7 +96,9 @@ const MainView = () => {
     <BrowserRouter>
       <Row>
         {filteredMovies.map((movie) => (
-          <Col className='md-5' key={movie._id || movie.id}> {/* Ensure the key is unique */}
+          <Col className="md-5" key={movie._id || movie.id}>
+            {" "}
+            {/* Ensure the key is unique */}
             <MovieCard
               movie={movie}
               onMovieClick={(newSelectedMovie) => {
@@ -103,11 +107,15 @@ const MainView = () => {
             />
           </Col>
         ))}
-        <button onClick={() => { 
-          setUser(null); 
-          setToken(null); 
-          localStorage.clear(); 
-        }}>Logout</button>
+        <button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        >
+          Logout
+        </button>
       </Row>
     </BrowserRouter>
   );
