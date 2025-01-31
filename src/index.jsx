@@ -1,33 +1,16 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainView from "./components/main-view/main-view";
-import MovieView from "./components/movie-view/movie-view";
 import "./index.scss";
-
-const App = () => (
-  <MainView />
-  // <BrowserRouter>
-  //   <div className="my-flix">
-  //     <Routes>
-  //       <Route path="/" element={<MainView />} />
-  //       <Route path="/movie/:id" element={<MovieView />} />
-  //     </Routes>
-  //   </div>
-  // </BrowserRouter>
-);
+import MainView from "./components/main-view/main-view";
 
 // Find the root element in the DOM
-const rootElement = document.getElementById("root");
+const container = document.getElementById("root");
+const root = createRoot(container);
 
-// Create the React root and render the application
-if (rootElement) {
-  const root = createRoot(rootElement);
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-} else {
-  console.error("Failed to find the root element!");
-}
+const MyFlix = () => (
+  <React.StrictMode>
+    <MainView />
+  </React.StrictMode>
+);
+
+root.render(<MyFlix />);
