@@ -6,7 +6,10 @@ $text-light: #FFFFFF; // Bright text color for better visibility
 $button-bg-hover: #A52A2A; // Hover state for buttons
 $text-muted: #CCCCCC; // Brighter muted text color for better readability
 
+ feature/bootstrap-styling
 // Import Bootstrap SCSS
+
+
 @import '~bootstrap/scss/bootstrap.scss';
 
 // Global styles

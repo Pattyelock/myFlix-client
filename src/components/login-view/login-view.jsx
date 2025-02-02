@@ -1,42 +1,42 @@
+feature/bootstrap-styling
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+
 export const LoginView = ({ onLoggedIn }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const data = {
-      Username: username,
-      Password: password,//
-    };
+    // Make API call to log in
 
-    fetch("https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com//login", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+    const data = {
+      access: username,
+      secret: password,
+    };
+    fetch("https://movie-api-main-2-81ab4bbd4cbf.herokuapp.com/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ Username: username, Password: password }),
     })
-    .then(response => {
-      if (!response.ok) {
-        setErrorMessage('Invalid username or password');
-        throw new Error('Login failed');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        onLoggedIn(data.user, data.token);
-      }
-    })
-    .catch((e) => {
-      console.error('Error during login:', e);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          onLoggedIn(data.user, data.token);
+        } else {
+          setErrorMessage("Invalid username or password");
+        }
+      })
+      .catch(() => {
+        setErrorMessage("An error occurred. Please try again.");
+      });
+
   };
 
   return (
@@ -48,7 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="3" 
+
         />
       </Form.Group>
 
@@ -60,13 +60,10 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </Form.Group>
 
-      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      </label>
+      <button type="submit">Submit</button>
+    </form>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
   );
 };

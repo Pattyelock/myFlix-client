@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./movie-view.scss";
 
+ feature/bootstrap-styling
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams(); 
 
@@ -47,11 +48,17 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       .catch(err => console.error('Error updating favorite movies:', err));
   };
 
+const MovieView = ({ movies }) => {
+  const { movieId } = useParams(); // Get the movie ID from the URL
+  const movie = movies.find((movie) => movie._id === movieId); // Find the movie by ID
+
+
   if (!movie) {
     return <p>Movie not found or loading...</p>;
   }
 
   return (
+ feature/bootstrap-styling
     <div>
       <div>
         <img className="w-100" src={movie.image} alt={movie.title} />
@@ -85,6 +92,20 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       {}
       <Link to="/">
         <button className="btn btn-secondary mt-3">Back</button>
+
+    <div className="movie-view">
+      <h1>{movie.Title}</h1>
+      <img 
+        src={movie.ImageURL} 
+        alt={`${movie.Title} Poster`} 
+        className="movie-poster" 
+      />
+      <p>{movie.Description}</p>
+      <p>Genre: {movie.Genre ? movie.Genre.Name : "Unknown"}</p>
+      <p>Director: {movie.Director ? movie.Director.Name : "Unknown"}</p>
+      <Link to="/movies" className="go-back-link">
+        <p>Go Back</p>
+
       </Link>
     </div>
   );
