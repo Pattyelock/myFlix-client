@@ -1,98 +1,16 @@
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 import "./movie-view.scss";
 
- feature/bootstrap-styling
-export const MovieView = ({ movies, user, token, setUser }) => {
-  const { movieId } = useParams(); 
-
-  console.log("User object: ", user);
-
-  if (!user || !user.Username) {
-    console.error("User object or Username is undefined");
-    return <p>User is not logged in or data is incomplete.</p>;
-  }
-
-  const movie = movies.find((b) => b.id === movieId);
-
-  console.log("Movies array: ", movies);
-  console.log("Movie ID from URL: ", movieId);
-  console.log("Found movie: ", movie);
-
- 
-  console.log("User object: ", user);
-
-  if (!user || !user.Username) {
-    console.error("User object or Username is undefined");
-    return <p>User is not logged in or data is incomplete.</p>;
-  }
-
-
-  const isFavorite = user?.FavoriteMovies?.includes(movieId) || false;
-
-  
-  const handleFavorite = () => {
-    const method = isFavorite ? 'DELETE' : 'POST'; 
-    fetch(`https://movies-flix-hartung-46febebee5c5.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
-      method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(updatedUser => {
-        setUser(updatedUser);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-      })
-      .catch(err => console.error('Error updating favorite movies:', err));
-  };
-
 const MovieView = ({ movies }) => {
-  const { movieId } = useParams(); // Get the movie ID from the URL
-  const movie = movies.find((movie) => movie._id === movieId); // Find the movie by ID
-
+  const { id } = useParams(); // Get the movie ID from the URL
+  const movie = movies.find((movie) => movie._id === id); // Find the movie by ID
 
   if (!movie) {
-    return <p>Movie not found or loading...</p>;
+    return <div>Movie not found. Please go back and select another movie.</div>;
   }
 
   return (
- feature/bootstrap-styling
-    <div>
-      <div>
-        <img className="w-100" src={movie.image} alt={movie.title} />
-      </div>
-      <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Description: </span>
-        <p>{movie.description}</p>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.director}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre}</span>
-      </div>
-      <div>
-        <span>Actors: </span>
-        <span>{Array.isArray(movie.actors) ? movie.actors.join(", ") : "N/A"}</span>
-      </div>
-
-      {}
-      <button onClick={handleFavorite} className="btn btn-primary mt-3">
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
-
-      {}
-      <Link to="/">
-        <button className="btn btn-secondary mt-3">Back</button>
-
     <div className="movie-view">
       <h1>{movie.Title}</h1>
       <img 
@@ -103,10 +21,11 @@ const MovieView = ({ movies }) => {
       <p>{movie.Description}</p>
       <p>Genre: {movie.Genre ? movie.Genre.Name : "Unknown"}</p>
       <p>Director: {movie.Director ? movie.Director.Name : "Unknown"}</p>
-      <Link to="/movies" className="go-back-link">
+      <Link to="/" className="go-back-link">
         <p>Go Back</p>
-
       </Link>
     </div>
   );
 };
+
+export default MovieView;

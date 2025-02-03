@@ -1,8 +1,76 @@
+// // Styles for the signup view
+// .signup-form {
+//     max-width: 500px;
+//     margin: 50px auto;
+//     padding: 20px;
+//     background-color: #f8f9fa;
+//     border-radius: 8px;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+//     h2 {
+//       text-align: center;
+//       margin-bottom: 20px;
+//       font-size: 1.5rem;
+//       font-weight: 600;
+//     }
+
+//     .form-group {
+//       margin-bottom: 1.5rem;
+
+//       label {
+//         font-size: 1rem;
+//         color: #495057;
+//         font-weight: 500;
+//       }
+
+//       .form-control {
+//         border-radius: 4px;
+//         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+//         border: 1px solid #ced4da;
+//         padding: 0.75rem 1.25rem;
+//         font-size: 1rem;
+//         color: #495057;
+
+//         &:focus {
+//           border-color: #66afe9;
+//           outline: none;
+//           box-shadow: 0 0 8px rgba(0, 122, 255, 0.25);
+//         }
+//       }
+//     }
+
+//     .signup-button {
+//       background-color: #007bff;
+//       border-color: #007bff;
+//       color: #fff;
+//       font-weight: 600;
+//       padding: 0.75rem 1.25rem;
+//       width: 100%;
+//       border-radius: 4px;
+//       transition: background-color 0.3s ease, border-color 0.3s ease;
+
+//       &:hover {
+//         background-color: #0056b3;
+//         border-color: #004085;
+//       }
+//     }
+
+//     .text-danger {
+//       font-size: 0.875rem;
+//       margin-top: 10px;
+//     }
+
+//     @media (max-width: 576px) {
+//       padding: 15px;
+//       margin: 20px;
+//     }
+//   }
+
 // Customizing Bootstrap Variables
-$primary: #8B0000; // Custom primary color
-$secondary: #2C2C2C; // Custom secondary color
-$body-bg: #1C1C1C; // Background color
-$text-light: #F5F5F5; // Light text color
+$primary: #8b0000; // Custom primary color
+$secondary: #2c2c2c; // Custom secondary color
+$body-bg: #1c1c1c; // Background color
+$text-light: #f5f5f5; // Light text color
 $btn-border-radius: 8px; // Rounded corners for buttons
 
 // Import Bootstrap SCSS
