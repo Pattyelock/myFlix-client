@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import "./movie-view.scss";
 
 const MovieView = ({ movies }) => {
-  const { movieId } = useParams(); // Get the movie ID from the URL
-  const movie = movies.find((movie) => movie._id === movieId); // Find the movie by ID
+  const { id } = useParams(); // Get the movie ID from the URL
+  const movie = movies.find((movie) => movie._id === id); // Find the movie by ID
 
   if (!movie) {
     return <div>Movie not found. Please go back and select another movie.</div>;
@@ -21,7 +21,7 @@ const MovieView = ({ movies }) => {
       <p>{movie.Description}</p>
       <p>Genre: {movie.Genre ? movie.Genre.Name : "Unknown"}</p>
       <p>Director: {movie.Director ? movie.Director.Name : "Unknown"}</p>
-      <Link to="/movies" className="go-back-link">
+      <Link to="/" className="go-back-link">
         <p>Go Back</p>
       </Link>
     </div>
