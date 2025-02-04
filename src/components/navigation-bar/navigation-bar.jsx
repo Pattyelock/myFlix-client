@@ -18,7 +18,7 @@ export const NavigationBar = ({ user, onLogout }) => {
         </Nav>
         <Nav>
           {user ? (
-            <Button variant="outline-light" onClick={onLogout}>Logout</Button>
+            <Button variant="outline-light" onClick={onLogout}>Test</Button>
           ) : (
             <>
               <Nav.Link as={Link} to="/">Login</Nav.Link>

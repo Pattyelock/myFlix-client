@@ -93,6 +93,7 @@ export const LoginView = ({ onLoggedIn }) => {
           localStorage.setItem("user", JSON.stringify(data.user));
           onLoggedIn(data.user, data.token);
         }
+        console.log(data);
       })
       .catch((e) => {
         console.error("Error during login:", e);

@@ -3,51 +3,22 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function ProfileView() {
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-
-  // Fetch user data from the API (you can use a logged-in user's token)
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('/api/users/me');
-        setUser(response.data);
-        setFavoriteMovies(response.data.favoriteMovies);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-    fetchUserData();
-  }, []);
-
-  const handleRemoveFavorite = async (movieId) => {
-    try {
-      await axios.delete(`/api/users/me/favorites/${movieId}`);
-      setFavoriteMovies(favoriteMovies.filter((movie) => movie._id !== movieId));
-    } catch (error) {
-      console.error('Error removing favorite movie:', error);
-    }
-  };
-
-  const handleDeregister = async () => {
-    try {
-      await axios.delete('/api/users/me');
-      // Handle logout or redirect to login
-    } catch (error) {
-      console.error('Error deregistering user:', error);
-    }
-  };
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = JSON.parse(localStorage.getItem("email"));
 
   if (!user) return <div>Loading...</div>;
-
-  return (
+  console.log(user);
+  
+    return (
     <div className="profile-view">
       <h2>User Profile</h2>
       <div>
         <h3>Registration Details</h3>
-        <p><strong>Username:</strong> {user.username}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Date of Birth:</strong> {new Date(user.dob).toLocaleDateString()}</p>
+        <p><strong>Username:</strong> {user.Username}</p>
+        <p><strong>Email:</strong> {user.Email}</p>
+        <p><strong>Date of Birth:</strong> {new Date(user.Birthday).toLocaleDateString()}</p>
       </div>
 
       <div>
@@ -59,7 +30,7 @@ function ProfileView() {
             favoriteMovies.map((movie) => (
               <li key={movie._id}>
                 <span>{movie.title}</span>
-                <button onClick={() => handleRemoveFavorite(movie._id)}>Remove from Favorites</button>
+                {/* <button onClick={() => handleRemoveFavorite(movie._id)}>Remove from Favorites</button> */}
               </li>
             ))
           )}
@@ -67,7 +38,7 @@ function ProfileView() {
       </div>
 
       <div>
-        <button onClick={handleDeregister}>Deregister</button>
+        {/* <button onClick={handleDeregister}>Deregister</button> */}
       </div>
     </div>
   );
