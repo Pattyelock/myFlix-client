@@ -11,14 +11,14 @@ export const NavigationBar = ({ user, onLogout }) => {
         <Nav className="me-auto">
           {user && (
             <>
-              <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
+              
               <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
             </>
           )}
         </Nav>
         <Nav>
           {user ? (
-            <Button variant="outline-light" onClick={onLogout}>Test</Button>
+            <Button variant="outline-light" onClick={onLogout}>Logout</Button>
           ) : (
             <>
               <Nav.Link as={Link} to="/">Login</Nav.Link>
