@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import "./movie-view.scss";
 
 const MovieView = ({ movies }) => {
-  const { id } = useParams(); // Get the movie ID from the URL
-  const movie = movies.find((movie) => movie._id === id); // Find the movie by ID
+  const { movieId } = useParams(); // Get the movie ID from the URL
+  const movie = movies.find((movie) => movie._id === movieId); // Find the movie by ID
 
   if (!movie) {
     return <div>Movie not found. Please go back and select another movie.</div>;
