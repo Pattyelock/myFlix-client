@@ -11,7 +11,7 @@ export const NavigationBar = ({ user, onLogout }) => {
         <Nav className="me-auto">
           {user && (
             <>
-              <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
+              
               <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
             </>
           )}

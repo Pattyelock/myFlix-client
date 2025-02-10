@@ -21,7 +21,7 @@ const MovieView = ({ movies }) => {
       <p>{movie.Description}</p>
       <p>Genre: {movie.Genre ? movie.Genre.Name : "Unknown"}</p>
       <p>Director: {movie.Director ? movie.Director.Name : "Unknown"}</p>
-      <Link to="/movies" className="go-back-link">
+      <Link to="/" className="go-back-link">
         <p>Go Back</p>
       </Link>
     </div>
