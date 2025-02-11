@@ -48,13 +48,6 @@ body {
   color: $text-light; // Ensure text inside the input field is visible
   border: 1px solid $primary;
 
-  &:focus {
-    background-color: $secondary;
-    color: $text-light; // Retain visibility for focused inputs
-    border-color: $primary;
-    box-shadow: 0 0 0 0.25rem rgba($primary, 0.5);
-  }
-
   &::placeholder {
     color: $text-muted; // Make placeholder text visible
     opacity: 1; // Fully visible
